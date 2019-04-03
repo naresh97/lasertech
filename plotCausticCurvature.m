@@ -17,10 +17,18 @@ function plotCausticCurvature(lambda, w0, aufloesungZ)
     q = z + i*zR;
     oneOverR = real(1./q);
     w = sqrt(lambda./pi./-imag(1./q));
+    psi = atan(z./zR);
 
     subplot(2,1,1);
+    yyaxis left;
     plot(z, w);
-    title("Caustic for w_0 = "+w0+", \lambda = "+lambda);xlabel("z");ylabel("w(z)");
+    ylabel("w(z)");
+    yyaxis right;
+    plot(z, psi);
+    line(xlim, [pi/2 pi/2], 'LineStyle','--');
+    line(xlim, [-pi/2 -pi/2], 'LineStyle', '--');
+    ylabel("\psi(z)");
+    title("Caustic and Gouy Phase for w_0 = "+w0+", \lambda = "+lambda);xlabel("z");
 
     subplot(2,1,2);
     plot(z, oneOverR);
